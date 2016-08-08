@@ -1,24 +1,56 @@
 <html> 
 <head>
 <style type="text/css">
-  *{margin:0}</style>
+  *{margin:0}
+
+  .right{
+  	margin-left: 20px;
+  	margin-top: 20px;
+  }
+  .margin-left-20{
+  	margin-left: 20px;
+  }
+  .height-40{
+  	height: 40px;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head> 
 <body>  
-<div>
+<div class="pull-left">
   <img src="testxy.png" id="img">
-  <button onclick="outputAndClearPath();">outputAndClearPath</button>
+</div>
+<div class="right pull-left">
+	<div class="height-40">
+		<div class="btn btn-info pull-left" onclick="outputAndClearPath();">outputPath</div>
+		<div class="btn btn-info pull-left margin-left-20" onclick="clearDiv();">clearPath</div>
+	</div>
+	<div>
+		<div>Path</div>
+		<div id="output"></div>
+	</div>
 </div>
 </body>  
   <script type="text/javascript">
   var path=[];
+  var index=0;
     var img=document.getElementById("img");
     img.onclick=function(e){
       path.push(e.pageX);
       path.push(e.pageY);
     }
     function outputAndClearPath(){
-      console.log(path);
+      updateOutputDiv();
       path=[];
+    }
+    function updateOutputDiv(){
+    	var newObj=document.createElement("div"); 
+    	newObj.innerHTML=++index+". "+path;
+    	document.getElementById("output").appendChild(newObj);
+    }
+    function clearDiv(){
+    	document.getElementById("output").innerHTML="";
+    	index=0;
     }
     </script>
 </html>  
